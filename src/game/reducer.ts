@@ -1,4 +1,4 @@
-import { backBattle, createBattle, pickBoost, pickCommand, pickItem, pickSkill, pickTarget } from "./combat.ts";
+import { backBattle, createBattle, pickBoost, pickCommand, pickItem, pickSkill, pickTarget, resolveEnemy } from "./combat.ts";
 import { ENCOUNTERS, heroById, INN_COST, ITEMS, MAPS } from "./data.ts";
 import { executePathAction, previewPathAction } from "./pathAction.ts";
 import { freshState, persist } from "./save.ts";
@@ -30,6 +30,7 @@ export type Action =
   | { type: "BATTLE_TARGET"; id: string }
   | { type: "BATTLE_BACK" }
   | { type: "BATTLE_LEAVE" }
+  | { type: "BATTLE_ENEMY" }
   | { type: "CLEAR_TOAST" };
 
 function blocked(map: (typeof MAPS)[LocationId], pos: Pos): boolean {
@@ -329,6 +330,10 @@ export function reduce(state: GameState, action: Action): GameState {
       return state.battle ? { ...state, battle: yieldCombat(state.battle, { kind: "back" }) } : state;
     case "BATTLE_LEAVE":
       return finishBattle(state);
+    case "BATTLE_ENEMY":
+      return state.battle && state.battle.phase === "resolving"
+        ? { ...state, battle: resolveEnemy(state.battle) }
+        : state;
     case "CLEAR_TOAST":
       return { ...state, lastPathResult: null };
     default:

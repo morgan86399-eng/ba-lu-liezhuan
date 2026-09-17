@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { ITEMS, WEAPON_LABEL } from "../game/data.ts";
 import type { BattleState, CommandId, ItemId } from "../game/types.ts";
-import { boostOrbs, COMMANDS, currentActor, isAllyTurn, motionDuration, turnOrderActors } from "../game/view.ts";
+import { boostOrbs, COMMANDS, currentActor, isAllyTurn, motionDuration, prefersReducedMotion, turnOrderActors } from "../game/view.ts";
 import { Icon } from "./Icon.tsx";
 import { Portrait } from "./Portrait.tsx";
 
@@ -17,6 +17,7 @@ export function BattleView({
   onTarget,
   onBack,
   onLeave,
+  onEnemy,
 }: {
   battle: BattleState;
   inventory: Record<ItemId, number>;
@@ -27,6 +28,7 @@ export function BattleView({
   onTarget: (id: string) => void;
   onBack: () => void;
   onLeave: () => void;
+  onEnemy: () => void;
 }) {
   const root = useRef<HTMLElement>(null);
   const actor = currentActor(battle);
@@ -50,11 +52,15 @@ export function BattleView({
 
   useEffect(() => {
     if (battle.phase === "won" || battle.phase === "lost") {
-      const t = window.setTimeout(onLeave, 900);
+      const t = window.setTimeout(onLeave, prefersReducedMotion() ? 0 : 900);
+      return () => window.clearTimeout(t);
+    }
+    if (battle.phase === "resolving") {
+      const t = window.setTimeout(onEnemy, prefersReducedMotion() ? 0 : 520);
       return () => window.clearTimeout(t);
     }
     return undefined;
-  }, [battle.phase, onLeave]);
+  }, [battle.phase, onLeave, onEnemy]);
 
   return (
     <section ref={root} className="screen battle-screen">

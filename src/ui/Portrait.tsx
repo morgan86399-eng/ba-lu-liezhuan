@@ -18,8 +18,13 @@ export function Portrait({
   const accent = hero?.accent ?? "#2a2d38";
   if (failed || !id) {
     return (
-      <div className={`portrait portrait-fallback ${className ?? ""}`} style={{ background: `radial-gradient(circle at 40% 30%, ${accent} 0%, #0b0e14 75%)` }}>
-        <span>{name.slice(0, 1)}</span>
+      <div
+        className={`portrait portrait-fallback ${className ?? ""}`}
+        data-hero={id ?? "none"}
+        style={{ background: `radial-gradient(circle at 38% 28%, ${accent} 0%, #07080c 72%)` }}
+      >
+        <span className="seal">{name.slice(0, 1)}</span>
+        <i className="portrait-haze" />
       </div>
     );
   }

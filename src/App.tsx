@@ -89,6 +89,7 @@ export function App() {
           onTarget={(id) => dispatch({ type: "BATTLE_TARGET", id })}
           onBack={() => dispatch({ type: "BATTLE_BACK" })}
           onLeave={() => dispatch({ type: "BATTLE_LEAVE" })}
+          onEnemy={() => dispatch({ type: "BATTLE_ENEMY" })}
         />
       ) : null}
 

@@ -30,6 +30,14 @@ export function WorldView({
   return (
     <section className={`screen world-screen loc-${map.id}`}>
       <div className="world-stage" style={{ ["--cols" as string]: map.width, ["--rows" as string]: map.height }}>
+        <div className="scene-sky" />
+        <div className="scene-ridge" />
+        <div className="scene-gate" />
+        <div className="scene-house h1" />
+        <div className="scene-house h2" />
+        <div className="scene-lantern l1" />
+        <div className="scene-lantern l2" />
+        <div className="scene-ground" />
         {map.exits.map((ex) => (
           <div
             key={`${ex.to}-${ex.pos.x}-${ex.pos.y}`}

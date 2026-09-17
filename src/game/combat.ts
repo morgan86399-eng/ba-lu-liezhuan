@@ -285,7 +285,15 @@ export function advanceTurn(battle: BattleState): BattleState {
 
   const cur = currentActor(next);
   if (cur?.isEnemy) {
-    return resolveEnemy(next);
+    return {
+      ...next,
+      phase: "resolving",
+      command: null,
+      boost: 0,
+      skillId: null,
+      itemId: null,
+      toast: `${cur.name}行動。`,
+    };
   }
   return {
     ...next,
@@ -395,7 +403,9 @@ export function simulateScriptedWin(encounterId: keyof typeof ENCOUNTERS, heroId
   while (battle.phase !== "won" && battle.phase !== "lost" && guard < 80) {
     guard += 1;
     if (!isAllyTurn(battle) || battle.phase === "resolving") {
-      battle = resolveEnemy(battle);
+      if (battle.phase === "resolving" || (currentActor(battle)?.isEnemy ?? false)) {
+        battle = resolveEnemy({ ...battle, phase: "resolving" });
+      }
       continue;
     }
     const foe = living(battle.enemies)[0];

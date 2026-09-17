@@ -458,9 +458,9 @@ export const ENCOUNTERS = {
       {
         id: "boss-a",
         name: "黃巾渠帥",
-        hp: 88,
-        atk: 10,
-        shields: 5,
+        hp: 70,
+        atk: 7,
+        shields: 4,
         weaknesses: ["blade", "fire", "spear"] as WeaponId[],
       },
     ],

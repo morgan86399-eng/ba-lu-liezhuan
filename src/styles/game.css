@@ -124,6 +124,20 @@ img {
   font-family: var(--serif);
   font-size: 42px;
   color: var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.portrait-fallback .seal {
+  z-index: 1;
+  text-shadow: 0 0 18px rgba(228, 197, 106, 0.45);
+}
+
+.portrait-haze {
+  position: absolute;
+  inset: auto 10% 0;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
 }
 
 .icon {
@@ -276,6 +290,87 @@ img {
 .world-stage {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+}
+
+.scene-sky {
+  position: absolute;
+  inset: 0 0 38% 0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(228, 197, 106, 0.16), transparent 22%),
+    linear-gradient(180deg, #1c1610 0%, #0e1218 100%);
+}
+
+.scene-ridge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18%;
+  height: 28%;
+  background: linear-gradient(180deg, transparent, rgba(20, 24, 28, 0.9));
+  clip-path: polygon(0 70%, 18% 40%, 36% 62%, 58% 28%, 80% 55%, 100% 32%, 100% 100%, 0 100%);
+}
+
+.scene-gate {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  width: min(280px, 46vw);
+  height: 22%;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(180deg, #3a2a18, #1a120c);
+  clip-path: polygon(8% 100%, 8% 38%, 22% 38%, 22% 18%, 78% 18%, 78% 38%, 92% 38%, 92% 100%);
+  box-shadow: 0 0 0 1px rgba(228, 197, 106, 0.25);
+}
+
+.scene-house {
+  position: absolute;
+  background: #16110d;
+  border: 1px solid rgba(228, 197, 106, 0.2);
+}
+
+.scene-house.h1 {
+  left: 8%;
+  bottom: 34%;
+  width: 18%;
+  height: 16%;
+}
+
+.scene-house.h2 {
+  right: 10%;
+  bottom: 38%;
+  width: 16%;
+  height: 14%;
+}
+
+.scene-lantern {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  background: #e4c56a;
+  box-shadow: 0 0 18px #e4c56a;
+  border-radius: 2px;
+}
+
+.scene-lantern.l1 {
+  left: 22%;
+  bottom: 42%;
+}
+.scene-lantern.l2 {
+  right: 24%;
+  bottom: 46%;
+}
+
+.scene-ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(80, 60, 30, 0.25), transparent 50%),
+    linear-gradient(180deg, #1a1610, #0b0e14);
 }
 
 .pin {
@@ -284,6 +379,7 @@ img {
   display: grid;
   justify-items: center;
   gap: 4px;
+  z-index: 1;
 }
 
 .you-pin .portrait,
@@ -639,7 +735,8 @@ img {
   height: 120px;
   margin-bottom: 8px;
   background:
-    radial-gradient(circle at 50% 40%, #5a2a22, #141016 70%);
+    radial-gradient(circle at 50% 30%, #7a3a28 0%, #2a1210 42%, #141016 75%);
+  box-shadow: inset 0 -20px 30px rgba(0, 0, 0, 0.45);
 }
 
 .hp-line {
