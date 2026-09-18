@@ -25,6 +25,22 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Enable GitHub Pages (workflow source)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages" -f build_type=workflow
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            gh api -X PUT "repos/${GITHUB_REPOSITORY}/pages" -f build_type=workflow
+          fi
+          exit 0
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+        continue-on-error: true
       - name: Install
         run: npm ci
       - name: Build
