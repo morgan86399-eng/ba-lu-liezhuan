@@ -75,7 +75,7 @@ export const MAPS: Record<string, MapDef> = {
         y: 9,
         pathHint: "guide",
         nightOnly: true,
-        talk: ["更夫提著燈：夜里城門只留一條縫。官道上有人咳嗽，不像過路的。"],
+        talk: ["更夫提著燈：夜裡城門只留一條縫。官道上有人咳嗽，不像過路的。"],
       },
       {
         id: "child",
@@ -139,7 +139,7 @@ export const MAPS: Record<string, MapDef> = {
         y: 3,
         pathHint: "allure",
         talk: [
-          "琴師把弦按住：黃巾渠帥在北營。他白天巡寨，夜里喝酒。有人能勸，比硬闖省事。",
+          "琴師把弦按住：黃巾渠帥在北營。他白天巡寨，夜裡喝酒。有人能勸，比硬闖省事。",
         ],
       },
     ],
@@ -192,7 +192,7 @@ export const MAPS: Record<string, MapDef> = {
     ],
     warps: [
       { x: 7, y: 10, to: "xinyue", tx: 6, ty: 2, prompt: "返回新野" },
-      { x: 7, y: 1, to: "camp", tx: 6, ty: 10, prompt: "潜入黃巾營寨", requireFlag: "roadScouted" },
+      { x: 7, y: 1, to: "camp", tx: 6, ty: 10, prompt: "潛入黃巾營寨", requireFlag: "roadScouted" },
     ],
     encounter: {
       steps: 6,

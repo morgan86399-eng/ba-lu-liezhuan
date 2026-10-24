@@ -37,7 +37,7 @@ export default function MenuOverlay({
   );
 
   return (
-    <div className="overlay" role="dialog" aria-modal="true" aria-label="列傳選單">
+    <div className="overlay" role="dialog" aria-modal="true" aria-label="列傳選單" lang="zh-Hant-TW">
       <div className="sheet gold-frame">
         <h2>列傳</h2>
         <p style={{ color: "var(--muted)", marginTop: 0 }}>
