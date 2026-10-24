@@ -1223,7 +1223,7 @@ function afterWin(prev: GameSave, finished: BattleState): GameSave {
   }, [save, interactTarget]);
 
   return (
-    <main className="app" onPointerDown={unlockAudio} id="game-main">
+    <main className="app" onPointerDown={unlockAudio} id="game-main" lang="zh-Hant-TW">
       <a className="skip-link" href="#game-hero">
         略過裝飾、進入畫面
       </a>
@@ -2036,8 +2036,8 @@ function afterWin(prev: GameSave, finished: BattleState): GameSave {
           {restHeals.map((h) => (
             <div key={h.name} className="rest-heal-row">
               <b>{h.name}</b>
-              {h.hp > 0 && <span className="heal-pop">+{h.hp} HP</span>}
-              {h.sp > 0 && <span className="heal-pop sp">+{h.sp} SP</span>}
+              {h.hp > 0 && <span className="heal-pop">＋{h.hp} 氣血</span>}
+              {h.sp > 0 && <span className="heal-pop sp">＋{h.sp} 氣力</span>}
               {h.hp === 0 && h.sp === 0 && <span className="heal-pop">已滿</span>}
             </div>
           ))}

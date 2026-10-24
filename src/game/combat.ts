@@ -407,7 +407,7 @@ export function resolveCommand(
     const item = itemById(command.itemId ?? "herb");
     if (!item) {
       actor.bp = Math.min(3, actor.bp + boost);
-      events.push({ type: "text", text: "沒有這種物件。" });
+      events.push({ type: "text", text: "沒有這種道具。" });
       return { state: battle, events };
     }
     if (item.kind === "heal") {

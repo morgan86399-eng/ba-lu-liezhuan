@@ -270,7 +270,7 @@ export default function WorldView({
         </div>
         <div className="gold-frame chip hud-party">
           <b>
-            {save.party.map((id) => heroById(id).name).join("・")} · Lv{save.level}
+            {save.party.map((id) => heroById(id).name).join("・")} · 等級 {save.level}
           </b>
           <div>
             金錢 {save.gold}

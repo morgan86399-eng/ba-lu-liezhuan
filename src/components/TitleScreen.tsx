@@ -131,7 +131,7 @@ export default function TitleScreen({
     { scope: root },
   );
   return (
-    <section ref={root} className="screen title-wrap">
+    <section ref={root} className="screen title-wrap" lang="zh-Hant-TW">
       <div className="bg-plate" style={{ backgroundImage: "url(./art/bg-title.png)" }} />
       <Dust />
       <div className="vignette" />
@@ -918,7 +918,7 @@ export function CharacterSelect({
   );
 }
 
-/** Settings — music/SFX mute flags + gold 「已套用」 ≥1.5s. */
+/** 設定 — 音樂／音效開關，套用後金色「已套用」提示 ≥1.5 秒。 */
 export function SettingsPanel({ onBack }: { onBack: () => void }) {
   const [settings, setSettings] = useState<GameSettings>(() => loadSettings());
   const [feedback, setFeedback] = useState(false);
@@ -953,13 +953,19 @@ export function SettingsPanel({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <section className="screen select-stage" data-qa="settings-panel">
+    <section className="screen select-stage" data-qa="settings-panel" lang="zh-Hant-TW">
       <div className="bg-plate" style={{ backgroundImage: "url(./art/bg-title.png)", opacity: 0.45 }} />
       <div className="select-inner">
         <div className="sheet gold-frame settings-sheet" style={{ margin: "24px auto", maxWidth: 420 }}>
           <h1 style={{ marginTop: 0 }}>設定</h1>
-          <p className="settings-hint">音樂／音效開關（無素材時亦以旗標切換按鈕狀態）。</p>
+          <p className="settings-hint">調整遊戲音訊與介面語系。尚無音樂素材時，開關仍會記住你的選擇。</p>
           <div className="settings-rows">
+            <div className="settings-row gold-frame chip">
+              <span>介面語系</span>
+              <span className="settings-lang" data-qa="settings-lang">
+                繁體中文
+              </span>
+            </div>
             <div className="settings-row gold-frame chip">
               <span>音樂</span>
               <button
@@ -967,6 +973,7 @@ export function SettingsPanel({ onBack }: { onBack: () => void }) {
                 className={`btn${settings.music ? " btn-primary" : ""}`}
                 data-qa="settings-music"
                 data-on={settings.music ? "1" : "0"}
+                aria-label={settings.music ? "音樂：開" : "音樂：關"}
                 onClick={() => toggle("music")}
               >
                 {settings.music ? "開" : "關"}
@@ -979,6 +986,7 @@ export function SettingsPanel({ onBack }: { onBack: () => void }) {
                 className={`btn${settings.sfx ? " btn-primary" : ""}`}
                 data-qa="settings-sfx"
                 data-on={settings.sfx ? "1" : "0"}
+                aria-label={settings.sfx ? "音效：開" : "音效：關"}
                 onClick={() => toggle("sfx")}
               >
                 {settings.sfx ? "開" : "關"}
@@ -1015,7 +1023,7 @@ export function SettingsPanel({ onBack }: { onBack: () => void }) {
               <div className="overnight-popup-kicker">設定</div>
               <div className="overnight-popup-title">已套用</div>
               <div className="overnight-popup-sub">
-                音樂 {settings.music ? "開" : "關"} · 音效 {settings.sfx ? "開" : "關"}
+                語系 繁體中文 · 音樂 {settings.music ? "開" : "關"} · 音效 {settings.sfx ? "開" : "關"}
               </div>
               <p className="save-feedback-hold-hint" aria-hidden={feedbackReady}>
                 {feedbackReady ? "可按確定" : "……請稍候"}

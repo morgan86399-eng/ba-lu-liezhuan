@@ -693,7 +693,7 @@ export default function BattleView({
                   setMode("item");
                 }}
               >
-                物件
+                道具
               </button>
               <button
                 type="button"
@@ -777,7 +777,7 @@ export default function BattleView({
           )}
           {mode === "item" && (
             <div className="list-btns">
-              {ownedItems.length === 0 && <div className="weak-row">沒有可用物件。</div>}
+              {ownedItems.length === 0 && <div className="weak-row">沒有可用道具。</div>}
               {ownedItems.map((it) => (
                 <button
                   key={it.id}
